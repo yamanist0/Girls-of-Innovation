@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: 'Inter', system-ui, sans-serif;
+  }
+  body {
+    font-family: var(--font-sans);
+    background:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px),
+      radial-gradient(circle at 20% 20%, hsl(var(--primary) / 0.09), transparent 70%),
+      radial-gradient(circle at 80% 50%, hsl(var(--highlight) / 0.08), transparent 75%),
+      linear-gradient(to bottom, hsl(var(--background)), hsl(var(--background)) 80%);
+    background-size: 36px 36px, 36px 36px, auto, auto, auto;
+    background-attachment: fixed;
+  }
+}
+
+:root {
+  --background: 330 40% 98%;
+  --foreground: 333 40% 12%;
+  --grid-line: hsl(333 40% 12% / 0.09);
+
+  --card: 0 0% 100%;
+  --card-foreground: 333 40% 12%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 333 40% 12%;
+
+  --primary: 330 84% 60%;
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 330 25% 94%;
+  --secondary-foreground: 333 30% 15%;
+
+  --muted: 330 25% 93%;
+  --muted-foreground: 333 15% 46%;
+
+  --accent: 330 30% 92%;
+  --accent-foreground: 333 30% 15%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 330 22% 90%;
+  --input: 330 22% 90%;
+  --ring: 330 84% 60%;
+
+  --highlight: 330 90% 72%;
+
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 330 50% 7%;
+  --foreground: 330 25% 96%;
+  --grid-line: hsl(0 0% 100% / 0.06);
+
+  --card: 330 45% 9%;
+  --card-foreground: 330 25% 96%;
+
+  --popover: 330 45% 9%;
+  --popover-foreground: 330 25% 96%;
+
+  --primary: 330 84% 66%;
+  --primary-foreground: 210 40% 100%;
+
+  --secondary: 330 25% 20%;
+  --secondary-foreground: 330 25% 96%;
+
+  --muted: 330 25% 20%;
+  --muted-foreground: 330 15% 72%;
+
+  --accent: 330 25% 20%;
+  --accent-foreground: 330 25% 96%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 100%;
+
+  --border: 330 25% 20%;
+  --input: 330 25% 20%;
+  --ring: 330 84% 60%;
+
+  --highlight: 330 90% 70%;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-feature-settings: 'rlig' 1, 'calt' 1;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
+.glass-panel {
+  background-color: hsl(var(--card) / 0.45);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid hsl(var(--border) / 0.5);
+  box-shadow: 0 4px 20px -2px hsl(var(--foreground) / 0.05),
+    0 0 0 1px hsl(var(--foreground) / 0.03) inset;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-in-up {
+  animation: fade-in-up 0.6s cubic-bezier(0.16, 0.8, 0.31, 1) both;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(330 70% 40%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .fade-in-up {
+    animation: none;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted) / 0.8);
+}
