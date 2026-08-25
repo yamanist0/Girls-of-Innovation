@@ -13,7 +13,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/yamanist0/girls-of-innovation">
-    <img src="public/favicon.svg" alt="Logo" width="80" height="80">
+    <img src="assets/favicon.ico" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Girls of Innovation</h3>
@@ -65,15 +65,14 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Girls of Innovation is the public face of a social impact program run by EAL Robotik, FRC team 8828 from Eskişehir Anadolu Lisesi. The site tells the story of a team where equality is not a document but how the club runs every single day.
+Girls of Innovation serves as a face to a social impact program executed by EAL Robotik, FRC team 8828, from Eskisehir Anadolu Lisesi. The website talks about the story of a team that does not regard equality as a piece of paper but as the day-to-day operation of their club.
 
-Visitors can smash stereotype bricks, read how girls hold critical technical roles on the team, and browse photos from workshops and conferences that make women in STEM visible.
+Smash stereotyical bricks, find out about how girls are crucial to our team in tech, and look through some of pictures from our workshops and conferences to help shine a light on women in STEM.
 
-Key features:
-* An interactive **smash-the-stereotypes** game that reveals the truth behind each prejudice
-* Sections covering the team's story, the ways it breaks barriers and the change it creates
-* A photo gallery of real events and a full contact section for new partners
-* Light and dark themes with a pink-centered, minimalist design language
+* A clickable interactive smash-the-stereotypes game that exposes each myth.
+* Coverage of its team story, barriers being shattered and an explanation of how it changes people.
+* A full photo gallery of documented events, and a comprehensive contacts page for new partners.
+* Light and dark color schemes implemented with the new light/dark theme's pink-centric minimalism design principles.
 
 The site is a static Next.js export, so it is fast, dependency-free at runtime and can be hosted almost anywhere.
 
@@ -135,9 +134,9 @@ The `out` directory is generated and can be deployed to any static host.
 
 The site works out of the box with no configuration or backend.
 
-* Click any brick in the **Smash the stereotypes** section to shatter it and reveal the truth behind the stereotype. The brick counter fills up as you go.
-* Use the theme toggle in the header to switch between light and dark mode.
-* All content lives in the structured data files under `data/`, so updating texts does not require touching any component.
+* click on any brick in the smash the stereotype section to break it and expose a stereoype as the fake truth you know it to be. Brick counter increments as you play.
+* toggle through themes with the themes selector in the header to switch from a light to a dark version
+* All of the data lives in structured data files in data/, so no need to touch component code to change texts.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -149,9 +148,6 @@ The site works out of the box with no configuration or backend.
 - [x] Interactive barrier-breaker with animations
 - [x] Light and dark themes
 - [x] Photo gallery from team events
-- [ ] Turkish language support
-- [ ] Individual team member profiles
-- [ ] Multilingual subtitle support for the gallery
 
 See the [open issues](https://github.com/yamanist0/girls-of-innovation/issues) for a full list of proposed features (and known issues).
 
@@ -214,7 +210,6 @@ Project Link: [https://github.com/yamanist0/girls-of-innovation](https://github.
 * [Tailwind CSS](https://tailwindcss.com/)
 * [Framer Motion](https://www.framer.com/motion/)
 * [lucide-react](https://lucide.dev/)
-* [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -241,3 +236,10 @@ Project Link: [https://github.com/yamanist0/girls-of-innovation](https://github.
 [Tailwind-url]: https://tailwindcss.com/
 [Framer.motion]: https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white
 [Framer-url]: https://www.framer.com/motion/
+
+<br>
+<hr>
+<p align="center">
+  <small>Made with 🤍 by <a href="https://github.com/yamanist0">yamanist</a></small>
+</p>
+
