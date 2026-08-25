@@ -1,9 +1,32 @@
 'use client'
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { galleryPhotos } from '@/data/gallery'
 
 export function Gallery() {
+  useEffect(() => {
+    let cancelled = false
+    const firstImage = new Image()
+
+    const preloadRemainingImages = () => {
+      if (cancelled) return
+
+      galleryPhotos.slice(1).forEach(src => {
+        const image = new Image()
+        image.src = src
+      })
+    }
+
+    firstImage.onload = preloadRemainingImages
+    firstImage.onerror = preloadRemainingImages
+    firstImage.src = galleryPhotos[0]
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
   return (
     <section id="gallery" className="space-y-10 scroll-mt-24">
       <SectionHeading
@@ -24,7 +47,8 @@ export function Gallery() {
             <img
               src={src}
               alt={`Girls of Innovation event photo ${i + 1}`}
-              loading="lazy"
+              loading={i === 0 ? 'eager' : 'lazy'}
+              fetchPriority={i === 0 ? 'high' : 'auto'}
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
           </motion.div>
