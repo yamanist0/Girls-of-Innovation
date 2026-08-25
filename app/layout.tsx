@@ -6,14 +6,19 @@ import { SiteFooter } from '@/components/site-footer'
 import { ThemeProvider } from '@/components/theme-provider'
 import favicon from '../assets/favicon.ico'
 
+const siteUrl = 'https://girls.ealrobotik.com'
+const siteTitle = 'Girls of Innovation | EAL Robotik'
+const siteDescription =
+  'Girls of Innovation is an EAL Robotik 8828 social impact program empowering girls to break barriers and build a future in STEM.'
+const logoUrl = `${siteUrl}/logo.png`
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://girls.ealrobotik.com'),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: 'Girls of Innovation | EAL Robotik',
+    default: siteTitle,
     template: '%s | Girls of Innovation'
   },
-  description:
-    'Empowering girls to break STEM barriers, one innovation at a time. A social impact program by EAL Robotik 8828 for gender equality in STEM.',
+  description: siteDescription,
   keywords: [
     'Girls of Innovation',
     'STEM',
@@ -29,7 +34,8 @@ export const metadata: Metadata = {
   authors: [{ name: 'EAL Robotik', url: 'https://ealrobotik.com' }],
   creator: 'EAL Robotik',
   publisher: 'EAL Robotik',
-  alternates: { canonical: '/' },
+  category: 'education',
+  alternates: { canonical: siteUrl },
   robots: {
     index: true,
     follow: true,
@@ -44,14 +50,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: '/',
+    url: siteUrl,
     siteName: 'Girls of Innovation',
-    title: 'Girls of Innovation | EAL Robotik',
-    description:
-      'Empowering girls to break STEM barriers, one innovation at a time. A social impact program by EAL Robotik 8828.',
+    title: siteTitle,
+    description: siteDescription,
     images: [
       {
-        url: '/favicon.svg',
+        url: logoUrl,
         width: 512,
         height: 512,
         alt: 'Girls of Innovation logo'
@@ -60,9 +65,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Girls of Innovation | EAL Robotik',
-    description:
-      'Empowering girls to break STEM barriers, one innovation at a time. A social impact program by EAL Robotik 8828.'
+    title: siteTitle,
+    description: siteDescription,
+    images: [logoUrl]
   },
   icons: { icon: favicon.src, apple: favicon.src }
 }
@@ -75,8 +80,39 @@ export const viewport: Viewport = {
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': `${siteUrl}/#organization`,
+        name: 'Girls of Innovation',
+        alternateName: 'EAL Robotik Girls of Innovation',
+        url: siteUrl,
+        logo: logoUrl,
+        parentOrganization: {
+          '@type': 'Organization',
+          name: 'EAL Robotik',
+          url: 'https://ealrobotik.com/'
+        }
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${siteUrl}/#website`,
+        name: 'Girls of Innovation',
+        url: siteUrl,
+        description: siteDescription,
+        publisher: { '@id': `${siteUrl}/#organization` },
+        inLanguage: 'en'
+      }
+    ]
+  }
+
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+      </head>
       <body className="min-h-screen flex flex-col font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <SiteHeader />
