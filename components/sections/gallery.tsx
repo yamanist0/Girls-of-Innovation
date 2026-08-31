@@ -1,32 +1,12 @@
-'use client'
-import { useEffect } from 'react'
+﻿'use client'
 import { motion } from 'framer-motion'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { galleryPhotos } from '@/data/gallery'
 
+// grid cells top out near 280px, so the browser only ever needs the small variants
+const sizes = '(min-width: 1024px) 279px, (min-width: 768px) 33vw, 50vw'
+
 export function Gallery() {
-  useEffect(() => {
-    let cancelled = false
-    const firstImage = new Image()
-
-    const preloadRemainingImages = () => {
-      if (cancelled) return
-
-      galleryPhotos.slice(1).forEach(src => {
-        const image = new Image()
-        image.src = src
-      })
-    }
-
-    firstImage.onload = preloadRemainingImages
-    firstImage.onerror = preloadRemainingImages
-    firstImage.src = galleryPhotos[0]
-
-    return () => {
-      cancelled = true
-    }
-  }, [])
-
   return (
     <section id="gallery" className="space-y-10 scroll-mt-24">
       <SectionHeading
@@ -34,26 +14,33 @@ export function Gallery() {
         subtitle="Workshops, conferences and events where girls take the stage in STEM."
       />
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-w-6xl mx-auto">
-        {galleryPhotos.map((src, i) => (
-          <motion.div
-            key={src}
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ delay: (i % 8) * 0.05, duration: 0.4 }}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: '-40px' }}
+        transition={{ duration: 0.4 }}
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-w-6xl mx-auto"
+      >
+        {galleryPhotos.map((photo, i) => (
+          <div
+            key={photo.src}
             className="relative aspect-square rounded-lg overflow-hidden border border-border bg-muted/20 group"
           >
             <img
-              src={src}
+              src={photo.src}
+              srcSet={photo.srcSet}
+              sizes={sizes}
+              width={photo.width}
+              height={photo.height}
               alt={`Girls of Innovation event photo ${i + 1}`}
-              loading={i === 0 ? 'eager' : 'lazy'}
-              fetchPriority={i === 0 ? 'high' : 'auto'}
+              loading={i < 4 ? 'eager' : 'lazy'}
+              decoding="async"
+              fetchPriority={i < 4 ? 'high' : 'low'}
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
-          </motion.div>
+          </div>
         ))}
-      </div>
+      </motion.div>
     </section>
   )
 }
